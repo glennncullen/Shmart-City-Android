@@ -271,7 +271,9 @@ public class Handler {
                     if (String.valueOf(status).equalsIgnoreCase("Connected")) {
                         isConnected = true;
                         Log.i(LOG_TAG, "is connected");
-                        subscribeToTopic("/shmartcity/test/");
+                        subscribeToTopic("/shmartcity/route/");
+                        subscribeToTopic("/shmartcity/nextroad/");
+                        subscribeToTopic("/shmartcity/extinguished/");
                     }
                 }
             });
