@@ -83,7 +83,7 @@ public class Handler {
      * @param currentActivity activity calling the handler
      * @return instance of handler singleton
      */
-    public static Handler getInstance(AppCompatActivity currentActivity){
+    public static Handler instance(AppCompatActivity currentActivity){
         if(handler == null){
             handler = new Handler();
             activityInFocus = currentActivity;
@@ -135,6 +135,14 @@ public class Handler {
                                 JSONObject receivedJson = null;
                                 try {
                                     receivedJson = new JSONObject(new String(data, "UTF-8"));
+                                    if(receivedJson.has("path")){
+                                        ((MainActivity) activityInFocus).setRoute(receivedJson);
+                                    }
+                                    else if (receivedJson.has("next")){
+                                        ((MainActivity) activityInFocus).updateRoad();
+                                    }else if(receivedJson.has("extinguished")){
+                                        ((MainActivity) activityInFocus).noFire();
+                                    }
                                     String jsonString = receivedJson.toString();
                                     Log.i(LOG_TAG, "Received:\t" + jsonString);
                                 } catch (JSONException e) {
