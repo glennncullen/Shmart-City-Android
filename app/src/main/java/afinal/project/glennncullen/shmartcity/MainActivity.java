@@ -91,17 +91,17 @@ public class MainActivity extends AppCompatActivity {
     private void updayDisplay(String road, String direction){
         switch (direction){
             case "straight":
-                instructionTxt.setText("Continue Straight On");
+                instructionTxt.setText("At The Next Junction\nContinue Straight On");
                 nextRoadTxt.setText(road.substring(0, road.length()-3));
                 directionImg.setImageDrawable(getApplicationContext().getDrawable(R.drawable.straight_arrow));
                 break;
             case "left":
-                instructionTxt.setText("Turn Left On To");
+                instructionTxt.setText("At The Next Junction\nTurn Left On To");
                 nextRoadTxt.setText(road.substring(0, road.length()-3));
                 directionImg.setImageDrawable(getApplicationContext().getDrawable(R.drawable.left_arrow));
                 break;
             case "right":
-                instructionTxt.setText("Turn Right On To");
+                instructionTxt.setText("At The Next Junction\nTurn Right On To");
                 nextRoadTxt.setText(road.substring(0, road.length()-3));
                 directionImg.setImageDrawable(getApplicationContext().getDrawable(R.drawable.right_arrow));
                 break;
