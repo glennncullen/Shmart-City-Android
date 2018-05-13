@@ -1,6 +1,5 @@
 package afinal.project.glennncullen.shmartcity;
 
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             String nextRoad = (String) route.get(1);
             String nextDirection = getNextDirection(currentRoad.charAt(currentRoad.length()-2), nextRoad.charAt(nextRoad.length()-2));
             route.remove(0);
-            updayDisplay(nextRoad, nextDirection);
+            updateDisplay(nextRoad, nextDirection);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -67,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
             route = (JSONArray) message.get("path");
             String currentRoad = (String) route.get(0);
             String nextRoad = (String) route.get(1);
-            String nextDirection = getNextDirection(currentRoad.charAt(currentRoad.length()-2), nextRoad.charAt(nextRoad.length()-2));
+            String nextDirection = getNextDirection(currentRoad.charAt(currentRoad.length()-2),
+                                                    nextRoad.charAt(nextRoad.length()-2));
             alarmImg.setImageDrawable(getApplicationContext().getDrawable(R.drawable.alarm_green));
-            updayDisplay(nextRoad, nextDirection);
+            updateDisplay(nextRoad, nextDirection);
             route.remove(0);
             Log.i(LOG_TAG, route.get(0).getClass().getSimpleName());
         } catch (JSONException e) {
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // update the cardview with the most recent info
-    private void updayDisplay(String road, String direction){
+    public void updateDisplay(String road, String direction){
         switch (direction){
             case "straight":
                 instructionTxt.setText("At The Next Junction\nContinue Straight On");
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // get the next direction
-    private String getNextDirection(char from, char to){
+    public String getNextDirection(char from, char to){
         switch (from){
             case 'N':
                 if(to == 'N') return "straight";
